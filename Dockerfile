@@ -18,6 +18,7 @@ ARG BUILD_DEPS="build-essential \
     curl \
     git \
     gnupg2 \
+    ssh \
     libffi-dev \
     make \
     llvm \
@@ -48,15 +49,7 @@ RUN pyenv install 3.4.10 && pyenv global 3.4.10 && python -m pip install ${PIP_I
 RUN apt-get remove libssl1.0-dev -y && apt-get install libssl-dev --no-install-recommends --no-install-suggests -y
 RUN pyenv install 3.5.7 && pyenv global 3.5.7 && python -m pip install ${PIP_INSTALLS} --upgrade
 RUN pyenv install 3.6.8 && pyenv global 3.6.8 && python -m pip install ${PIP_INSTALLS} --upgrade
-ARG PIP_DEV_INSTALLS="black \
-    pipenv \
-    rope \
-    poetry \
-    autopep8 \
-    yapf \
-    flake8 \
-    pep8"
-RUN pyenv install 3.7.3 && pyenv global 3.7.3 && python -m pip install ${PIP_INSTALLS}  ${PIP_DEV_INSTALLS} --upgrade
+RUN pyenv install 3.7.3 && pyenv global 3.7.3 && python -m pip install ${PIP_INSTALLS} --upgrade
 
 RUN python --version
 
